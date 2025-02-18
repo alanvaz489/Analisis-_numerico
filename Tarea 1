@@ -1,0 +1,116 @@
+import math
+import numpy as np
+
+
+"""Ejercicio 1
+    Pasar de grados Fahrenheit a Celcius."""
+
+f=float(input('Ingresa la temperatura en grados Fahrenheit: '))
+c= round((f-32)*5/9,3)
+print(f'La temperatura es {c}C°')
+
+
+
+
+
+"""Ejercicio 2
+    Considera la definición del sinh(x)
+
+                sinh(x) = (e^x - e^(-x)) / 2
+
+    Elabora un programa que calcule el valor de sinh(x) en x = 2π 
+    de tres diferentes maneras:"""
+    
+x=5
+#Usando la funcion sinh()
+a=math.sinh(x)
+#Usando la funcion exp()
+b=((math.exp(x))-math.exp(-x))/2
+#Usando la funcion e
+c=((math.e**(x))-math.e**(-x))/2
+print(a,b,c)
+
+
+
+
+
+"""Ejercicio 3
+    1. Considera la relación entre el seno en variable compleja y el seno hiperbólico en variable real x,
+
+                sin(ix) = i sinh(x).
+
+    Elabora un programa que calcule el valor de sin(ix) y de sinh(x) para ciertos valores dados de x, para verificar la identidad"""
+    
+from cmath import sin, sinh, cos
+x = 5
+ix = (1j)*(x)
+sen = sin(ix)
+print(f'El sen del numero complejo es {sen}')
+
+seh = (1j)*(sinh(x))
+print(f'El sinh del numero complejo es {seh}')
+
+"""2. Considera la relación de Euler para x real,
+    
+                e^(ix) = cos(x) + i sin(x).
+    
+    Elabora un programa que calcule el valor de cos(x), sin(x) y de e^(ix) 
+    para ciertos valores dados de x, para verificar la identidad."""
+    
+e = math.e**(ix)
+print(f'El resultado evaluado en el numero {ix} es {e}')
+ 
+E = cos(x) + (1j)*(sin(x))
+print(f'El resultado de cos(x) + i sin(x) es {E}')
+
+
+"""Ejercicio 4
+    Este tratamiento flexible de funciones en el plano complejo permite encontrar 
+    las raíces reales o complejas de una función cuadrática.
+    
+    Considera que las raíces de f(z) = az² + bz + c se obtienen
+    
+               z± = (-b ± √(b² - 4ac)) / (2a).
+    
+    Elabora un programa en el que uses Numpy para calcular el valor de las raíces 
+    con diferentes valores dados de a, b, c, para obtener ejemplos de raíces reales 
+    y complejas."""
+
+a=float(input("Ingresa el coeficiente de el termino cuadratico: "))
+b=float(input("Ingresa el coeficiente de el termino lineal: "))
+c =float(input("Ingresa el termino constante: "))
+
+r1 = (-b + np.lib.scimath.sqrt(b**2 - 4*a*c))/(2*a)
+r2 = (-b - np.lib.scimath.sqrt(b**2 - 4*a*c))/(2*a)
+print(f'Las raices de la ecuación son {r1} y {r2}')
+
+
+
+"""Ejercicio 5
+
+    ¿Cuál es la trayectoria de una pelota que se lanza con una rapidez inicial v0 y 
+    un ángulo θ medido de la horizontal?
+    
+    Sabemos que la pelota seguirá una trayectoria y = f(x), donde, en ausencia de 
+    resistencia del aire,
+    
+        f(x) = x * tan(θ) - (g / (2 * v0**2 * cos²(θ))) * x² + y0.
+    
+    En esta expresión, x es la coordenada horizontal, g es la aceleración de la 
+    gravedad y y0 es la posición inicial de la pelota"""
+
+x = 4
+y0 = 4
+theta = round(math.radians(75),3)
+v0 = 20
+g = 9.81
+y = x * math.tan(theta) - (g / (2 * v0**2 * math.cos(theta)**2)) * x**2 + y0
+
+print(f'Coordenada horizontal x = {x} m')
+print(f'Altura inicial y0 = {y0} m')
+print(f'Angulo en radianes = {theta} rad')
+print(f'Velocidad inicial de la pelota v0 = {v0} m/s')
+print(f'Aceleracion de la gravedad en la tierra g = {g} m/s^2')
+print(f'Trayectoria en y para x = {x} m: {y} m')
+
+
