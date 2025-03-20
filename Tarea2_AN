@@ -1,0 +1,58 @@
+import numpy as np
+
+#Ejercicio uno.
+"""
+print('Ingresa la trayectoria uno: ')
+x1=float(input('Ingresa la direccion x de la trayectoria uno: '))
+x2=float(input('Ingresa la direccion y de la trayectoria uno: '))
+x3=float(input('Ingresa la direccion z de la trayectoria uno: '))
+r1=float(input('Ingresa el resultado: '))
+
+print('Ingresa la trayectoria dos: ')
+y1=float(input('Ingresa la direccion x de la trayectoria dos: '))
+y2=float(input('Ingresa la direccion y de la trayectoria dos: '))
+y3=float(input('Ingresa la direccion z de la trayectoria dos: '))
+r2=float(input('Ingresa el resultado: '))
+
+print('Ingresa la trayectoria tres: ')
+z1=float(input('Ingresa la direccion x de la trayectoria tres: '))
+z2=float(input('Ingresa la direccion y de la trayectoria tres: '))
+z3=float(input('Ingresa la direccion z de la trayectoria tres: '))
+r3=float(input('Ingresa el resultado: '))
+
+trayectorias=np.array([[x1,x2,x3],[y1,y2,y3],[z1,z2,z3]])
+resultados=np.array([[r1],[r2],[r3]])
+sol=np.linalg.solve(trayectorias,resultados)
+a,b,c=sol
+print(f"El punto de intersección es: x = {a}, y = {b}, z = {c}")
+
+"""
+
+#Ejercicio dos.
+"""
+x=np.array([[2, 1],[1, 2]])
+y=np.array([1, 0])
+
+solucion=np.linalg.solve(x,y)
+q_u, q_d=solucion
+
+print(f"Carga del quark up (q_u): {round(q_u,5)}")
+print(f"Carga del quark down (q_d): {round(q_d,5)}")
+
+"""
+
+
+#Ejercicio tres.
+"""
+x=np.array([[1, 5, 10, 20],[1, 1, 1, 1],[0, 1, -4, 0], [1, -2, 0, 0]])
+y=np.array([95, 26, 0, -1])
+
+solucion = np.linalg.solve(x,y)
+x_1, x_5, x_10, x_20 = solucion
+
+print(f"Número de meteoros de 1 kg: {x_1}")
+print(f"Número de meteoros de 5 kg: {x_5}")
+print(f"Número de meteoros de 10 kg: {x_10}")
+print(f"Número de meteoros de 20 kg: {x_20}")
+
+"""
