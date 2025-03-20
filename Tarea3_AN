@@ -1,0 +1,90 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+"""
+# Ejercicio 1.
+T = np.array([0, 21.1, 37.8, 54.4, 71.1, 87.8, 100])
+mu_k = np.array([0.101, 1.79, 1.13, 0.696, 0.519, 0.338, 0.296])
+
+
+def interp_linear(x, X, Y):
+    for i in range(len(X) - 1):
+        if X[i] <= x <= X[i+1]:
+            return Y[i] + (Y[i+1] - Y[i]) / (X[i+1] - X[i]) * (x - X[i])
+    return None
+
+
+T_values = np.array([10, 30, 60, 90])
+mu_k_interpolated = np.array([interp_linear(t, T, mu_k) for t in T_values])
+
+
+print("Valores interpolados:", mu_k_interpolated)
+
+plt.scatter(T, mu_k, color='red', label="Datos Originales")
+plt.plot(T, mu_k, 'r--', alpha=0.5)
+plt.scatter(T_values, mu_k_interpolated, color='blue', label="Datos interpolados")
+plt.xlabel("Temperatura (°C)")
+plt.ylabel("Viscosidad cinemática (10⁻³ m²/s)")
+plt.legend()
+plt.grid()
+plt.show()
+
+"""
+
+"""
+#Ejercicio 2.
+
+h = np.array([0, 1.525, 3.050, 4.575, 6.10, 7.625, 9.150])
+rho = np.array([1, 0.8617, 0.7385, 0.6292, 0.5328, 0.4481, 0.3741])
+
+def lagrange_interpolation(x, X, Y):
+    n = len(X)
+    P_x = 0
+    for i in range(n):
+        L_i = 1
+        for j in range(n):
+            if i != j:
+                L_i *= (x - X[j]) / (X[i] - X[j])
+        P_x += Y[i] * L_i
+    return P_x
+
+h_target = 10.5
+rho_interpolated = lagrange_interpolation(h_target, h, rho)
+print(f"Densidad relativa interpolada a 10.5 km: {rho_interpolated}")
+
+h_values = np.linspace(0, 12, 100)
+rho_values = np.array([lagrange_interpolation(x, h, rho) for x in h_values])
+
+plt.scatter(h, rho, label="Datos", color="red")
+plt.plot(h_values, rho_values, label="Interpolación de Lagrange", linestyle="--")
+plt.scatter(h_target, rho_interpolated, color="blue", label="h = 10.5 km")
+plt.xlabel("Altura (km)")
+plt.ylabel("Densidad relativa")
+plt.legend()
+plt.grid()
+plt.show()
+
+"""
+
+"""
+
+#Ejercicio 3.
+
+velocidad = np.array([0, 400, 800, 1200, 1600])
+amplitud = np.array([0, 0.072, 0.233, 0.712, 3.400])
+
+coeficientes = np.polyfit(velocidad, amplitud, deg=3)  
+polinomio = np.poly1d(coeficientes)
+
+velocidad_new = np.linspace(0, 2500, 100)
+amplitud_new = polinomio(velocidad_new)
+
+plt.scatter(velocidad, amplitud, label="Datos Originales", color="red")
+plt.plot(velocidad_new, amplitud_new, label="Interpolación Polinómica", linestyle="--")
+plt.xlabel("Velocidad (rpm)")
+plt.ylabel("Amplitud (mm)")
+plt.legend()
+plt.grid()
+plt.show()
+
+"""
